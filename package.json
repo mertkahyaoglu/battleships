@@ -1,6 +1,6 @@
 {
-  "name": "turn-based-engine",
-  "description": "Game engine for realtime turn-based games",
+  "name": "battleships",
+  "description": "A realtime game example (PhaserJS + Socket.io)",
   "version": "0.0.1",
   "scripts": {
     "start": "npm install && bower install && grunt"
