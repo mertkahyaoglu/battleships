@@ -1,0 +1,7 @@
+{
+  "name": "turn-based-engine",
+  "dependencies": {
+    "phaser": "~2.2.2",
+    "jquery": "~2.1.3"
+  }
+}

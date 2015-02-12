@@ -1,0 +1,24 @@
+{
+  "name": "turn-based-engine",
+  "description": "Game engine for realtime turn-based games",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npm install && bower install && grunt"
+  },
+  "dependencies": {
+    "express": "4.11.1",
+    "socket.io": "1.3.2"
+  },
+  "devDependencies": {
+    "browserify": "^4.1.9",
+    "coffeeify": "^0.6.0",
+    "grunt": "~0.4.1",
+    "grunt-browserify": "^3.3.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-express-server": "^0.4.19",
+    "load-grunt-tasks": "~0.1.0"
+  }
+}
