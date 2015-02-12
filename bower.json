@@ -1,7 +1,6 @@
 {
-  "name": "turn-based-engine",
+  "name": "battleships",
   "dependencies": {
-    "phaser": "~2.2.2",
-    "jquery": "~2.1.3"
+    "phaser": "~2.2.2"
   }
 }
