@@ -1,10 +1,12 @@
+config = require './config.coffee'
+
 class Init
 
+  #Stencil Std Bold
   constructor: (game)->
 
   preload: ->
-    @game.load.image 'loadingbar', 'assets/loadingbar.png'
-    @game.load.image 'bg', 'assets/bg.png'
+    @game.load.image 'loadingbar', 'assets/title.png'
 
   create: ->
     @game.input.maxPointers = 1
@@ -12,6 +14,7 @@ class Init
     @game.scale.pageAlignHorizontally = true
     @game.scale.pageAlignVertically = true
     @game.scale.setScreenSize true
-    @game.state.start 'Preloader'
+    @game.stage.backgroundColor = config.stage.backgroundColor
+    @game.state.start 'preloader'
 
 module.exports = Init

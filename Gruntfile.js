@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 
         watch: {
           express: {
-            files:  [ 'lib/**/*.js', 'public/*', 'src/**/*.coffee', 'server.js' ],
+            files:  [ 'lib/**/*.js', 'public/**/*.coffee', 'src/**/*.coffee', 'server.js' ],
             tasks:  [ 'build', 'express:dev' ],
             options: {
               spawn: false,
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
           }
         },
 
-        clean: ['build/**/*'],
+        clean: ['public/build/**/*', 'src/build/**/*'],
 
         jshint: {
           options: {
@@ -53,7 +53,8 @@ module.exports = function (grunt) {
         express: {
           dev: {
             options: {
-              script: 'server.js'
+              script: 'server.js',
+              open: true
             }
           }
         }

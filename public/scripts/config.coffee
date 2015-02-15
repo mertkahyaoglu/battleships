@@ -1,6 +1,6 @@
 module.exports =
-  width: 800
-  height: 600
+  width: 640
+  height: 900
 
   stage:
-    backgroundColor: 0x222222
+    backgroundColor: 0x192f47
