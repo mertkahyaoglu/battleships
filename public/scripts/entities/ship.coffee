@@ -1,6 +1,5 @@
-class Miniship
+class Ship
 	constructor: (@game, @x, @y)->
-		@tileSize = 1
 
 	create: ->
 		@sprite = @game.add.sprite @x, @y, 'miniship'
@@ -11,4 +10,4 @@ class Miniship
 	onDragStop: ->
 		console.log "onDragStop"
 
-module.exports = Miniship
+module.exports = Ship

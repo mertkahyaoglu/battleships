@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
-  width: 640,
-  height: 900,
+  width: 320,
+  height: 640,
   stage: {
     backgroundColor: 0x192f47
   }
@@ -9,35 +9,6 @@ module.exports = {
 
 
 },{}],2:[function(require,module,exports){
-var Bigship;
-
-Bigship = (function() {
-  function Bigship(game, x, y) {
-    this.game = game;
-    this.x = x;
-    this.y = y;
-    this.tileSize = 3;
-  }
-
-  Bigship.prototype.create = function() {
-    this.sprite = this.game.add.sprite(this.x, this.y, 'bigship');
-    this.sprite.inputEnabled = true;
-    this.sprite.input.enableDrag();
-    return this.sprite.events.onDragStop.add(this.onDragStop, this.game);
-  };
-
-  Bigship.prototype.onDragStop = function() {
-    return console.log("onDragStop");
-  };
-
-  return Bigship;
-
-})();
-
-module.exports = Bigship;
-
-
-},{}],3:[function(require,module,exports){
 var Board;
 
 Board = (function() {
@@ -77,6 +48,8 @@ Board = (function() {
     return tile.loadTexture('tile', 0);
   };
 
+  Board.prototype.onTileClick = function(tile) {};
+
   return Board;
 
 })();
@@ -84,65 +57,35 @@ Board = (function() {
 module.exports = Board;
 
 
-},{}],4:[function(require,module,exports){
-var Midship;
+},{}],3:[function(require,module,exports){
+var Ship;
 
-Midship = (function() {
-  function Midship(game, x, y) {
+Ship = (function() {
+  function Ship(game, x, y) {
     this.game = game;
     this.x = x;
     this.y = y;
-    this.tileSize = 2;
   }
 
-  Midship.prototype.create = function() {
-    this.sprite = this.game.add.sprite(this.x, this.y, 'midship');
-    this.sprite.inputEnabled = true;
-    this.sprite.input.enableDrag();
-    return this.sprite.events.onDragStop.add(this.onDragStop, this.game);
-  };
-
-  Midship.prototype.onDragStop = function() {
-    return console.log("onDragStop");
-  };
-
-  return Midship;
-
-})();
-
-module.exports = Midship;
-
-
-},{}],5:[function(require,module,exports){
-var Miniship;
-
-Miniship = (function() {
-  function Miniship(game, x, y) {
-    this.game = game;
-    this.x = x;
-    this.y = y;
-    this.tileSize = 1;
-  }
-
-  Miniship.prototype.create = function() {
+  Ship.prototype.create = function() {
     this.sprite = this.game.add.sprite(this.x, this.y, 'miniship');
     this.sprite.inputEnabled = true;
     this.sprite.input.enableDrag();
     return this.sprite.events.onDragStop.add(this.onDragStop, this.game);
   };
 
-  Miniship.prototype.onDragStop = function() {
+  Ship.prototype.onDragStop = function() {
     return console.log("onDragStop");
   };
 
-  return Miniship;
+  return Ship;
 
 })();
 
-module.exports = Miniship;
+module.exports = Ship;
 
 
-},{}],6:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 var Init, config;
 
 config = require('./config.coffee');
@@ -171,7 +114,7 @@ Init = (function() {
 module.exports = Init;
 
 
-},{"./config.coffee":1}],7:[function(require,module,exports){
+},{"./config.coffee":1}],5:[function(require,module,exports){
 var Game, Init, Preloader, config;
 
 Init = require('./init.coffee');
@@ -191,32 +134,24 @@ window.onload = function() {
 };
 
 
-},{"./config.coffee":1,"./init.coffee":6,"./screens/game.coffee":8,"./screens/preloader.coffee":9}],8:[function(require,module,exports){
-var Bigship, Board, Game, Midship, Miniship;
+},{"./config.coffee":1,"./init.coffee":4,"./screens/game.coffee":6,"./screens/preloader.coffee":7}],6:[function(require,module,exports){
+var Board, Game, Ship;
 
 Board = require('../entities/board.coffee');
 
-Miniship = require('../entities/miniship.coffee');
-
-Midship = require('../entities/midship.coffee');
-
-Bigship = require('../entities/bigship.coffee');
+Ship = require('../entities/ship.coffee');
 
 Game = (function() {
   function Game(game) {
-    this.board = new Board(game, 10, 10);
-    this.minishipFactory = new Miniship(game, 0, 650);
-    this.midshipFactory = new Midship(game, 128, 650);
-    this.bigshipFactory = new Bigship(game, 256, 650);
+    this.board = new Board(game, 5, 5);
+    this.shipFactory = new Ship(game, 0, 330);
   }
 
   Game.prototype.preload = function() {};
 
   Game.prototype.create = function() {
     this.tiles = this.board.create();
-    this.miniship = this.minishipFactory.create();
-    this.midship = this.midshipFactory.create();
-    return this.bigship = this.bigshipFactory.create();
+    return this.ship = this.shipFactory.create();
   };
 
   Game.prototype.update = function() {};
@@ -228,7 +163,7 @@ Game = (function() {
 module.exports = Game;
 
 
-},{"../entities/bigship.coffee":2,"../entities/board.coffee":3,"../entities/midship.coffee":4,"../entities/miniship.coffee":5}],9:[function(require,module,exports){
+},{"../entities/board.coffee":2,"../entities/ship.coffee":3}],7:[function(require,module,exports){
 var Preloader;
 
 Preloader = (function() {
@@ -261,4 +196,4 @@ Preloader = (function() {
 module.exports = Preloader;
 
 
-},{}]},{},[7]);
+},{}]},{},[5]);
